@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IndexViewModel
+
+<!--Displays what team name has been selected for filtering the query. If the user wants every bowler displayed then "All Teams" is displayed-->
+<h1>@Model.TeamName</h1>
+
+<div>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <td>First Name</td>
+                <td>Middle Init</td>
+                <td>Last Name</td>
+                <td>Address</td>
+                <td>City</td>
+                <td>State</td>
+                <td>Zip Code</td>
+                <td>Phone Number</td>
+            </tr>
+        </thead>
+
+        <!--Loop to iterate through the info on each bowler-->
+        <tbody>
+            @foreach (var x in Model.Bowlers)
+            {
+                <tr>
+                    <td>@x.BowlerFirstName</td>
+                    <td>@x.BowlerMiddleInit</td>
+                    <td>@x.BowlerLastName</td>
+                    <td>@x.BowlerAddress</td>
+                    <td>@x.BowlerCity</td>
+                    <td>@x.BowlerState</td>
+                    <td>@x.BowlerZip</td>
+                    <td>@x.BowlerPhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!--Div tag to display the appropriate number of page links for the given query-->
+    <div page-info="@Model.PageNumberingInfo" page-url-teamName="@Model.TeamName">
+
+    </div>
+</div>
+
+
+

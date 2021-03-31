@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<Team>
+<!--Displays the reset filter that brings the user to a query that displays all bowlers
+    Also helps with keeping the currently-selected team name highlighted
+    -->
+<a asp-action="Index" asp-controller="Home" asp-route-teamID="0" asp-route-teamName="All Teams"
+   class="btn @("All Teams" == ViewBag.SelectedTeam ? "btn-primary" : "btn-outline-info")"
+   style="margin-bottom:3%; width:80%">All Teams</a>
+<br />
+
+<!--Loop that dynamically creates a team name filtering a-tag for every given team name.
+    Also helps with keeping the currently-selected team name highlighted
+    -->
+@foreach (var x in Model)
+{
+    <a asp-action="Index" asp-controller="Home" asp-route-teamID="@x.TeamId" asp-route-teamName="@x.TeamName"
+       class="btn @(x.TeamName == ViewBag.SelectedTeam ? "btn-primary" : "btn-outline-info")"
+       style="margin-bottom:3%; width:80%">@x.TeamName</a>
+    <br />
+}
